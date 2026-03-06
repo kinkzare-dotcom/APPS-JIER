@@ -1,6 +1,6 @@
 <?php
-require_once '../includes/db.php';
-require_once '../includes/functions.php';
+require_once dirname(__DIR__) . '/includes/db.php';
+require_once dirname(__DIR__) . '/includes/functions.php';
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -52,7 +52,7 @@ while ($k = mysqli_fetch_assoc($kategori)) {
     $kat_list[] = $k;
 }
 
-require_once '../includes/header.php';
+require_once dirname(__DIR__) . '/includes/header.php';
 ?>
 
 <style>
@@ -224,4 +224,4 @@ dz.addEventListener('dragleave', () => dz.classList.remove('drag-over'));
 dz.addEventListener('drop', () => dz.classList.remove('drag-over'));
 </script>
 
-<?php require_once '../includes/footer.php'; ?>
+<?php require_once dirname(__DIR__) . '/includes/footer.php'; ?>

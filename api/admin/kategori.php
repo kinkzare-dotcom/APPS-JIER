@@ -1,6 +1,6 @@
 <?php
-require_once '../includes/db.php';
-require_once '../includes/functions.php';
+require_once dirname(__DIR__) . '/includes/db.php';
+require_once dirname(__DIR__) . '/includes/functions.php';
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -38,7 +38,7 @@ if (isset($_GET['delete'])) {
 $kategories = mysqli_query($conn, "SELECT k.*, COUNT(a.id_aspirasi) as jml FROM kategori k LEFT JOIN aspirasi a ON k.id_kategori=a.id_kategori GROUP BY k.id_kategori ORDER BY k.nama_kategori ASC");
 $total_kat = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) c FROM kategori"))['c'];
 
-require_once '../includes/header.php';
+require_once dirname(__DIR__) . '/includes/header.php';
 ?>
 
 <style>
@@ -185,4 +185,4 @@ endif; ?>
     </div>
 </main>
 
-<?php require_once '../includes/footer.php'; ?>
+<?php require_once dirname(__DIR__) . '/includes/footer.php'; ?>

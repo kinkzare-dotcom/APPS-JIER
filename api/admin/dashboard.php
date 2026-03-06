@@ -1,6 +1,6 @@
 <?php
-require_once '../includes/db.php';
-require_once '../includes/functions.php';
+require_once dirname(__DIR__) . '/includes/db.php';
+require_once dirname(__DIR__) . '/includes/functions.php';
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -29,7 +29,7 @@ while ($cat_row = mysqli_fetch_assoc($cat_query)) {
 // Recent reports (limit 8)
 $latest = mysqli_query($conn, "SELECT a.*, u.nama FROM aspirasi a LEFT JOIN users u ON a.id_user = u.id_user ORDER BY a.tanggal DESC LIMIT 8");
 
-require_once '../includes/header.php';
+require_once dirname(__DIR__) . '/includes/header.php';
 ?>
 
 <div class="mesh-gradient"></div>
@@ -319,4 +319,4 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 </style>
 
-<?php require_once '../includes/footer.php'; ?>
+<?php require_once dirname(__DIR__) . '/includes/footer.php'; ?>

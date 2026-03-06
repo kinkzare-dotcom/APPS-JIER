@@ -1,6 +1,6 @@
 <?php
-require_once '../includes/db.php';
-require_once '../includes/functions.php';
+require_once dirname(__DIR__) . '/includes/db.php';
+require_once dirname(__DIR__) . '/includes/functions.php';
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -41,7 +41,7 @@ $count_tunggu = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) c FROM a
 $count_proses = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) c FROM aspirasi WHERE status='Proses'"))['c'];
 $count_selesai = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) c FROM aspirasi WHERE status='Selesai'"))['c'];
 
-require_once '../includes/header.php';
+require_once dirname(__DIR__) . '/includes/header.php';
 ?>
 
 <style>
@@ -201,4 +201,4 @@ endif; ?>
     </div>
 </main>
 
-<?php require_once '../includes/footer.php'; ?>
+<?php require_once dirname(__DIR__) . '/includes/footer.php'; ?>

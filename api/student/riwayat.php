@@ -1,7 +1,7 @@
 <?php
-require_once '../includes/db.php';
-require_once '../includes/header.php';
-require_once '../includes/functions.php';
+require_once dirname(__DIR__) . '/includes/db.php';
+require_once dirname(__DIR__) . '/includes/header.php';
+require_once dirname(__DIR__) . '/includes/functions.php';
 
 check_role('siswa');
 
@@ -208,4 +208,4 @@ function toggleDetail(id) {
 }
 </script>
 
-<?php require_once '../includes/footer.php'; ?>
+<?php require_once dirname(__DIR__) . '/includes/footer.php'; ?>

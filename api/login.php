@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once 'includes/db.php';
-require_once 'includes/functions.php';
+require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/includes/functions.php';
 
 // Redirect if already logged in
 if (isset($_SESSION['user_id'])) {
@@ -32,7 +32,8 @@ if (isset($_POST['login'])) {
         // Role Validation
         if ($source_role !== '' && $user['role'] !== $source_role) {
             $error = "Akses ditolak. Akun Anda terdaftar sebagai " . ucfirst($user['role']) . ".";
-        } else {
+        }
+        else {
             $_SESSION['user_id'] = $user['id_user'];
             $_SESSION['user_nama'] = $user['nama'];
             $_SESSION['user_username'] = $user['username'];
@@ -40,7 +41,8 @@ if (isset($_POST['login'])) {
 
             if ($user['role'] == 'admin') {
                 header("Location: admin/dashboard.php");
-            } else {
+            }
+            else {
                 header("Location: student/dashboard.php");
             }
             exit;
