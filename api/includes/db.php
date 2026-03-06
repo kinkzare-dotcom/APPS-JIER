@@ -42,4 +42,8 @@ if (mysqli_num_rows($check) == 0) {
         }
     }
 }
+
+// Enable Database Sessions
+require_once __DIR__ . '/session_handler.php';
+setup_db_sessions($conn);
 ?>

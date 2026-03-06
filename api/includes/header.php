@@ -1,9 +1,4 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    if (is_dir('/tmp'))
-        session_save_path('/tmp');
-    session_start();
-}
 if (!isset($_SESSION['user_id'])) {
     header("Location: /login.php");
     exit;

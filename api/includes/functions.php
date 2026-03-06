@@ -2,11 +2,6 @@
 // Function to redirect with a message
 function redirect($url, $msg = '', $type = 'success')
 {
-    if (session_status() == PHP_SESSION_NONE) {
-        if (is_dir('/tmp'))
-            session_save_path('/tmp');
-        session_start();
-    }
     if ($msg) {
         $_SESSION['flash'] = [
             'message' => $msg,

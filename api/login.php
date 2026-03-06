@@ -1,7 +1,4 @@
 <?php
-if (is_dir('/tmp'))
-    session_save_path('/tmp');
-session_start();
 require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/functions.php';
 

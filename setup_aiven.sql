@@ -42,6 +42,13 @@ CREATE TABLE IF NOT EXISTS umpan_balik (
     FOREIGN KEY (id_user) REFERENCES users(id_user) ON DELETE CASCADE
 );
 
+-- Sessions Table for Vercel/Cloud Hosting
+CREATE TABLE IF NOT EXISTS sessions (
+    id VARCHAR(128) NOT NULL PRIMARY KEY,
+    data TEXT NOT NULL,
+    timestamp INT(11) NOT NULL
+);
+
 -- Seed Initial Data using INSERT IGNORE to prevent "Duplicate entry" errors
 INSERT IGNORE INTO users (nama, username, password, role) VALUES 
 ('Administrator', 'admin', MD5('admin123'), 'admin'),
