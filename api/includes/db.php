@@ -23,4 +23,23 @@ else {
 if (!$conn || mysqli_connect_errno()) {
     die("Connection failed: " . mysqli_connect_error());
 }
+
+// Auto-Setup: Check if tables exist. If not, run setup_aiven.sql
+$check = mysqli_query($conn, "SHOW TABLES LIKE 'users'");
+if (mysqli_num_rows($check) == 0) {
+    // Correct path considering we are in api/includes/
+    $sql_file = __DIR__ . '/../../setup_aiven.sql';
+    if (file_exists($sql_file)) {
+        $sql = file_get_contents($sql_file);
+        // Execute multi-query
+        if (mysqli_multi_query($conn, $sql)) {
+            // Must clear the results buffer
+            do {
+                if ($result = mysqli_store_result($conn)) {
+                    mysqli_free_result($result);
+                }
+            } while (mysqli_next_result($conn));
+        }
+    }
+}
 ?>
