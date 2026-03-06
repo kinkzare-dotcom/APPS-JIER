@@ -1,6 +1,5 @@
--- Database: pss_jier
-CREATE DATABASE IF NOT EXISTS pss_jier;
-USE pss_jier;
+-- Database Setup for Aiven (Idempotent)
+-- This version removes 'CREATE DATABASE' and uses 'INSERT IGNORE' to prevent duplicate errors.
 
 -- Users Table
 CREATE TABLE IF NOT EXISTS users (
