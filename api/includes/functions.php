@@ -2,13 +2,20 @@
 // Function to redirect with a message
 function redirect($url, $msg = '', $type = 'success')
 {
+    if (session_status() == PHP_SESSION_NONE) {
+        if (is_dir('/tmp'))
+            session_save_path('/tmp');
+        session_start();
+    }
     if ($msg) {
         $_SESSION['flash'] = [
             'message' => $msg,
             'type' => $type
         ];
     }
-    header("Location: $url");
+    // Ensure root-relative or absolute URL
+    $redirect_url = (strpos($url, '/') === 0 || strpos($url, 'http') === 0) ? $url : '/' . $url;
+    header("Location: $redirect_url");
     exit;
 }
 
@@ -32,7 +39,7 @@ function display_flash()
 function check_login()
 {
     if (!isset($_SESSION['user_id'])) {
-        redirect('../login.php', 'Silahkan login terlebih dahulu.', 'error');
+        redirect('/login.php', 'Silahkan login terlebih dahulu.', 'error');
     }
 }
 
@@ -40,7 +47,7 @@ function check_login()
 function check_role($role)
 {
     if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != $role) {
-        redirect('../index.php', 'Akses ditolak.', 'error');
+        redirect('/index.php', 'Akses ditolak.', 'error');
     }
 }
 

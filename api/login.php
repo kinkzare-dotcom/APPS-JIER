@@ -1,4 +1,6 @@
 <?php
+if (is_dir('/tmp'))
+    session_save_path('/tmp');
 session_start();
 require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/functions.php';
@@ -6,10 +8,10 @@ require_once __DIR__ . '/includes/functions.php';
 // Redirect if already logged in
 if (isset($_SESSION['user_id'])) {
     if ($_SESSION['user_role'] == 'admin') {
-        header("Location: admin/dashboard.php");
+        header("Location: /admin/dashboard.php");
     }
     else {
-        header("Location: student/dashboard.php");
+        header("Location: /student/dashboard.php");
     }
     exit;
 }
@@ -40,10 +42,10 @@ if (isset($_POST['login'])) {
             $_SESSION['user_role'] = $user['role'];
 
             if ($user['role'] == 'admin') {
-                header("Location: admin/dashboard.php");
+                header("Location: /admin/dashboard.php");
             }
             else {
-                header("Location: student/dashboard.php");
+                header("Location: /student/dashboard.php");
             }
             exit;
         }

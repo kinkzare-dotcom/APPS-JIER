@@ -4,38 +4,62 @@
             "runtime": "vercel-php@0.7.2"
         }
     },
-    "routes": [
+    "rewrites": [
         {
-            "src": "/(css|js|images|uploads)/(.*)",
-            "dest": "/$1/$2"
+            "source": "/(css|js|images|uploads)/(.*)",
+            "destination": "/$1/$2"
         },
         {
-            "src": "/admin/(.*)\\.php",
-            "dest": "/api/admin/$1.php"
+            "source": "/admin",
+            "destination": "/api/admin/dashboard.php"
         },
         {
-            "src": "/admin/(.*)",
-            "dest": "/api/admin/$1.php"
+            "source": "/admin/:path.php",
+            "destination": "/api/admin/:path.php"
         },
         {
-            "src": "/student/(.*)\\.php",
-            "dest": "/api/student/$1.php"
+            "source": "/admin/:path",
+            "destination": "/api/admin/:path.php"
         },
         {
-            "src": "/student/(.*)",
-            "dest": "/api/student/$1.php"
+            "source": "/student",
+            "destination": "/api/student/dashboard.php"
         },
         {
-            "src": "/",
-            "dest": "/api/index.php"
+            "source": "/student/:path.php",
+            "destination": "/api/student/:path.php"
         },
         {
-            "src": "/(.*)\\.php",
-            "dest": "/api/$1.php"
+            "source": "/student/:path",
+            "destination": "/api/student/:path.php"
         },
         {
-            "src": "/(.*)",
-            "dest": "/api/$1.php"
+            "source": "/login.php",
+            "destination": "/api/login.php"
+        },
+        {
+            "source": "/login",
+            "destination": "/api/login.php"
+        },
+        {
+            "source": "/logout.php",
+            "destination": "/api/logout.php"
+        },
+        {
+            "source": "/logout",
+            "destination": "/api/logout.php"
+        },
+        {
+            "source": "/",
+            "destination": "/api/index.php"
+        },
+        {
+            "source": "/:path.php",
+            "destination": "/api/:path.php"
+        },
+        {
+            "source": "/:path",
+            "destination": "/api/:path.php"
         }
     ]
 }
