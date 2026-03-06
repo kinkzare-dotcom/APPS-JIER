@@ -1,6 +1,6 @@
 {
     "functions": {
-        "**/*.php": {
+        "api/**/*.php": {
             "runtime": "vercel-php@0.7.2"
         }
     },
@@ -10,8 +10,32 @@
             "dest": "/$1/$2"
         },
         {
+            "src": "/admin/(.*)\\.php",
+            "dest": "/api/admin/$1.php"
+        },
+        {
+            "src": "/admin/(.*)",
+            "dest": "/api/admin/$1.php"
+        },
+        {
+            "src": "/student/(.*)\\.php",
+            "dest": "/api/student/$1.php"
+        },
+        {
+            "src": "/student/(.*)",
+            "dest": "/api/student/$1.php"
+        },
+        {
+            "src": "/",
+            "dest": "/api/index.php"
+        },
+        {
+            "src": "/(.*)\\.php",
+            "dest": "/api/$1.php"
+        },
+        {
             "src": "/(.*)",
-            "dest": "/$1"
+            "dest": "/api/$1.php"
         }
     ]
 }
