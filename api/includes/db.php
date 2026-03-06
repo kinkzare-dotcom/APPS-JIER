@@ -25,8 +25,10 @@ if (!$conn || mysqli_connect_errno()) {
 }
 
 // Auto-Setup: Check if tables exist. If not, run setup_aiven.sql
-$check = mysqli_query($conn, "SHOW TABLES LIKE 'users'");
-if (mysqli_num_rows($check) == 0) {
+$check_users = mysqli_query($conn, "SHOW TABLES LIKE 'users'");
+$check_sessions = mysqli_query($conn, "SHOW TABLES LIKE 'sessions'");
+
+if (mysqli_num_rows($check_users) == 0 || mysqli_num_rows($check_sessions) == 0) {
     // Correct path considering we are in api/includes/
     $sql_file = __DIR__ . '/../../setup_aiven.sql';
     if (file_exists($sql_file)) {
