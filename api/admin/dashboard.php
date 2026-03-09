@@ -261,9 +261,12 @@ while ($row = mysqli_fetch_assoc($latest)):
                                 <?php echo htmlspecialchars($status); ?>
                             </span>
                         </td>
-                        <td style="text-align:right; padding-right: 20px;">
+                        <td style="text-align:right; padding-right: 20px; display:flex; gap:8px; justify-content:flex-end;">
                             <a href="detail_aspirasi.php?id=<?php echo $row['id_aspirasi']; ?>" class="btn btn-sm btn-primary" style="border-radius: 8px; padding: 8px 16px;">
                                 <i class="fas fa-eye"></i> Detail
+                            </a>
+                            <a href="aspirasi.php?delete=<?php echo $row['id_aspirasi']; ?>" class="btn btn-sm" style="background:var(--danger-soft);color:var(--danger); border-radius: 8px; padding: 8px 12px;" onclick="return confirm('Yakin ingin menghapus laporan ini?')">
+                                <i class="fas fa-trash"></i>
                             </a>
                         </td>
                     </tr>

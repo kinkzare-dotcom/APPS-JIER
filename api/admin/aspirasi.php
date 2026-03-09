@@ -18,6 +18,18 @@ if (isset($_POST['update_status'])) {
     exit;
 }
 
+// Delete Aspirasi
+if (isset($_GET['delete'])) {
+    $id = sanitize($_GET['delete']);
+    // Also delete feedback related to this aspirasi
+    mysqli_query($conn, "DELETE FROM umpan_balik WHERE id_aspirasi = '$id'");
+    mysqli_query($conn, "DELETE FROM aspirasi WHERE id_aspirasi = '$id'");
+    $_SESSION['flash'] = ['message' => 'Laporan berhasil dihapus!', 'type' => 'success'];
+    $redirect = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '/admin/aspirasi.php';
+    header("Location: $redirect");
+    exit;
+}
+
 // Filter
 $filter_status = isset($_GET['status']) ? sanitize($_GET['status']) : '';
 $search = isset($_GET['q']) ? sanitize($_GET['q']) : '';
@@ -178,9 +190,12 @@ while ($row = mysqli_fetch_assoc($result)):
     endif; ?>
                     </td>
                     <td><span class="badge <?php echo $bc; ?>"><i class="fas <?php echo $bi; ?>"></i> <?php echo $row['status']; ?></span></td>
-                    <td style="text-align:right;">
+                    <td style="text-align:right; display:flex; gap:8px; justify-content:flex-end;">
                         <a href="detail_aspirasi.php?id=<?php echo $row['id_aspirasi']; ?>" class="btn btn-primary btn-sm">
                             <i class="fas fa-eye"></i> Detail
+                        </a>
+                        <a href="?delete=<?php echo $row['id_aspirasi']; ?>" class="btn btn-sm" style="background:var(--danger-soft);color:var(--danger);" onclick="return confirm('Yakin ingin menghapus laporan ini?')">
+                            <i class="fas fa-trash"></i>
                         </a>
                     </td>
                 </tr>
