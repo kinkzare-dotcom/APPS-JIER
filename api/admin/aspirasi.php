@@ -169,7 +169,7 @@ while ($row = mysqli_fetch_assoc($result)):
                         <?php echo date('d M Y', strtotime($row['tanggal'])); ?>
                     </td>
                     <td>
-                        <?php if ($row['foto'] && file_exists('../uploads/' . $row['foto'])): ?>
+                        <?php if ($row['foto'] && file_exists('../../uploads/' . $row['foto'])): ?>
                             <span class="badge badge-success"><i class="fas fa-image"></i> Ada</span>
                         <?php
     else: ?>

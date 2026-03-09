@@ -21,12 +21,20 @@ if (isset($_POST['submit_laporan'])) {
         if (in_array($ext, $allowed) && $_FILES['foto']['size'] <= 3 * 1024 * 1024) {
             $foto = time() . '_' . $_SESSION['user_id'] . '.' . $ext;
 
-            // Ensure directory exists
-            if (!is_dir('../uploads')) {
-                mkdir('../uploads', 0777, true);
+            // Define uploads path
+            $upload_dir = '../../uploads'; // Adjust to project root uploads folder if exists, or local
+            if (!is_dir($upload_dir)) {
+                @mkdir($upload_dir, 0777, true);
             }
 
-            move_uploaded_file($_FILES['foto']['tmp_name'], '../uploads/' . $foto);
+            if (is_writable($upload_dir)) {
+                move_uploaded_file($_FILES['foto']['tmp_name'], $upload_dir . '/' . $foto);
+            }
+            else {
+                // If read-only (like Vercel), we can't save the file locally.
+                // We set $foto to null so the database record is created without a file path.
+                $foto = null;
+            }
         }
         else {
             $_SESSION['flash'] = ['message' => 'Format foto tidak valid (maks 3MB, JPG/PNG/WEBP).', 'type' => 'error'];

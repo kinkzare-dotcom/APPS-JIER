@@ -67,7 +67,7 @@ function statusBadge($status)
 }
 [$badgeClass, $badgeIcon, $badgeLabel] = statusBadge($data['status']);
 
-$foto_path = $data['foto'] ? '../uploads/' . $data['foto'] : null;
+$foto_path = $data['foto'] ? '../../uploads/' . $data['foto'] : null;
 $foto_exists = $foto_path && file_exists($foto_path);
 
 require_once dirname(__DIR__) . '/includes/header.php';
