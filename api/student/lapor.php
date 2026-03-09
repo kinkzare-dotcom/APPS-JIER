@@ -38,18 +38,18 @@ if (isset($_POST['submit_laporan'])) {
         }
         else {
             $_SESSION['flash'] = ['message' => 'Format foto tidak valid (maks 3MB, JPG/PNG/WEBP).', 'type' => 'error'];
-            header("Location: lapor.php");
+            header("Location: /student/lapor.php");
             exit;
         }
     }
 
     $q = "INSERT INTO aspirasi (id_user,id_kategori,judul,deskripsi,foto) VALUES ('$id_user','$id_kategori','$judul','$deskripsi','$foto')";
     if (mysqli_query($conn, $q)) {
-        redirect('riwayat.php', 'Laporan berhasil terkirim! Proses akan dimulai segera.', 'success');
+        redirect('student/riwayat.php', 'Laporan berhasil terkirim! Proses akan dimulai segera.', 'success');
     }
     else {
         $_SESSION['flash'] = ['message' => 'Terjadi kesalahan. Coba lagi.', 'type' => 'error'];
-        header("Location: lapor.php");
+        header("Location: /student/lapor.php");
         exit;
     }
 }

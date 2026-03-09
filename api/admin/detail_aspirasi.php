@@ -10,7 +10,7 @@ check_role('admin');
 
 $id = isset($_GET['id']) ? sanitize($_GET['id']) : '';
 if (!$id) {
-    header("Location: aspirasi.php");
+    header("Location: /admin/aspirasi.php");
     exit;
 }
 
@@ -31,7 +31,7 @@ if (isset($_POST['submit_response'])) {
         mysqli_rollback($conn);
         $_SESSION['flash'] = ['message' => 'Gagal mengirim tanggapan.', 'type' => 'error'];
     }
-    header("Location: detail_aspirasi.php?id=$id");
+    header("Location: /admin/detail_aspirasi.php?id=$id");
     exit;
 }
 
@@ -45,7 +45,7 @@ $result = mysqli_query($conn, $query);
 $data = mysqli_fetch_assoc($result);
 
 if (!$data) {
-    header("Location: aspirasi.php");
+    header("Location: /admin/aspirasi.php");
     exit;
 }
 

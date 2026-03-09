@@ -15,7 +15,7 @@ if (isset($_POST['add_kat'])) {
         mysqli_query($conn, "INSERT INTO kategori (nama_kategori) VALUES ('$nama')");
         $_SESSION['flash'] = ['message' => "Kategori '$nama' berhasil ditambahkan!", 'type' => 'success'];
     }
-    header("Location: kategori.php");
+    header("Location: /admin/kategori.php");
     exit;
 }
 
@@ -31,7 +31,7 @@ if (isset($_GET['delete'])) {
         mysqli_query($conn, "DELETE FROM kategori WHERE id_kategori='$id'");
         $_SESSION['flash'] = ['message' => "Kategori '$kat_name' berhasil dihapus!", 'type' => 'success'];
     }
-    header("Location: kategori.php");
+    header("Location: /admin/kategori.php");
     exit;
 }
 

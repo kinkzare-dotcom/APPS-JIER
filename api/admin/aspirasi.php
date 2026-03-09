@@ -14,7 +14,7 @@ if (isset($_POST['update_status'])) {
     $status = sanitize($_POST['status']);
     mysqli_query($conn, "UPDATE aspirasi SET status = '$status' WHERE id_aspirasi = '$id'");
     $_SESSION['flash'] = ['message' => 'Status berhasil diperbarui!', 'type' => 'success'];
-    header("Location: aspirasi.php" . (isset($_GET['status']) ? '?status=' . $_GET['status'] : ''));
+    header("Location: /admin/aspirasi.php" . (isset($_GET['status']) ? '?status=' . $_GET['status'] : ''));
     exit;
 }
 

@@ -23,7 +23,7 @@ if (isset($_POST['add_user'])) {
         mysqli_query($conn, "INSERT INTO users (nama, username, password, role) VALUES ('$nama','$username','$password','$role')");
         $_SESSION['flash'] = ['message' => "User '$nama' berhasil ditambahkan!", 'type' => 'success'];
     }
-    header("Location: users.php");
+    header("Location: /admin/users.php");
     exit;
 }
 
@@ -37,7 +37,7 @@ if (isset($_GET['delete'])) {
     else {
         $_SESSION['flash'] = ['message' => 'Tidak dapat menghapus akun sendiri.', 'type' => 'error'];
     }
-    header("Location: users.php");
+    header("Location: /admin/users.php");
     exit;
 }
 
