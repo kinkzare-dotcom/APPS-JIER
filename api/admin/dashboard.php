@@ -27,7 +27,11 @@ while ($cat_row = mysqli_fetch_assoc($cat_query)) {
 }
 
 // Recent reports (limit 8)
-$latest = mysqli_query($conn, "SELECT a.*, u.nama FROM aspirasi a LEFT JOIN users u ON a.id_user = u.id_user ORDER BY a.tanggal DESC LIMIT 8");
+$latest = mysqli_query($conn, "SELECT a.*, u.nama, k.nama_kategori 
+                                FROM aspirasi a 
+                                LEFT JOIN users u ON a.id_user = u.id_user 
+                                LEFT JOIN kategori k ON a.id_kategori = k.id_kategori
+                                ORDER BY a.tanggal DESC LIMIT 8");
 
 require_once dirname(__DIR__) . '/includes/header.php';
 ?>
@@ -192,10 +196,12 @@ $pct_selesai = round($selesai / $total * 100);
             <table class="tbl">
                 <thead>
                     <tr>
-                        <th style="padding-left: 20px;">#</th>
+                        <th>#</th>
                         <th>Tanggal</th>
+                        <th>Kategori</th>
                         <th>Judul Laporan</th>
                         <th>Pelapor</th>
+                        <th>Foto</th>
                         <th>Status</th>
                         <th style="text-align:right; padding-right: 20px;">Aksi</th>
                     </tr>
@@ -225,6 +231,11 @@ while ($row = mysqli_fetch_assoc($latest)):
                             <?php echo date('d M Y', strtotime($row['tanggal'])); ?>
                         </td>
                         <td>
+                            <span style="background:var(--primary-soft);color:var(--primary);padding:3px 10px;border-radius:50px;font-size:.75rem;font-weight:600;">
+                                <?php echo htmlspecialchars($row['nama_kategori']); ?>
+                            </span>
+                        </td>
+                        <td>
                             <span style="font-weight:700; color:var(--text);"><?php echo htmlspecialchars($row['judul']); ?></span>
                         </td>
                         <td>
@@ -234,6 +245,15 @@ while ($row = mysqli_fetch_assoc($latest)):
                                 </div>
                                 <span style="font-size:.875rem; font-weight: 500;"><?php echo htmlspecialchars($row['nama'] ?? '-'); ?></span>
                             </div>
+                        </td>
+                        <td>
+                            <?php if (!empty($row['foto'])): ?>
+                                <span class="badge badge-success"><i class="fas fa-image"></i></span>
+                            <?php
+    else: ?>
+                                <span class="text-muted">—</span>
+                            <?php
+    endif; ?>
                         </td>
                         <td>
                             <span class="badge <?php echo $badge; ?>" style="border-radius: 8px; padding: 6px 12px;">

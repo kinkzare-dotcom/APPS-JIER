@@ -67,8 +67,8 @@ function statusBadge($status)
 }
 [$badgeClass, $badgeIcon, $badgeLabel] = statusBadge($data['status']);
 
-$foto_path = $data['foto'] ? '../../uploads/' . $data['foto'] : null;
-$foto_exists = $foto_path && file_exists($foto_path);
+$foto_data = $data['foto'] ?: null;
+$foto_exists = !empty($foto_data);
 
 require_once dirname(__DIR__) . '/includes/header.php';
 ?>
@@ -270,28 +270,28 @@ endif; ?>
 
                 <?php if ($foto_exists): ?>
                     <!-- Photo with overlay & lightbox trigger -->
-                    <div class="photo-wrap" onclick="openLightbox('<?php echo htmlspecialchars($foto_path); ?>', '<?php echo htmlspecialchars($data['judul']); ?>')">
-                        <img src="<?php echo htmlspecialchars($foto_path); ?>" alt="Foto bukti: <?php echo htmlspecialchars($data['judul']); ?>" loading="lazy">
+                    <div class="photo-wrap" onclick="openLightbox('<?php echo $foto_data; ?>', '<?php echo htmlspecialchars($data['judul']); ?>')">
+                        <img src="<?php echo $foto_data; ?>" alt="Foto bukti: <?php echo htmlspecialchars($data['judul']); ?>" loading="lazy">
                         <div class="photo-overlay">
                             <i class="fas fa-expand"></i>
                         </div>
                     </div>
                     <div class="photo-actions">
-                        <button class="btn btn-primary btn-sm" onclick="openLightbox('<?php echo htmlspecialchars($foto_path); ?>', '<?php echo htmlspecialchars($data['judul']); ?>')">
+                        <button class="btn btn-primary btn-sm" onclick="openLightbox('<?php echo $foto_data; ?>', '<?php echo htmlspecialchars($data['judul']); ?>')">
                             <i class="fas fa-expand"></i> Perbesar
                         </button>
-                        <a href="<?php echo htmlspecialchars($foto_path); ?>" download class="btn btn-ghost btn-sm">
+                        <a href="<?php echo $foto_data; ?>" download="laporan_<?php echo $id; ?>.jpg" class="btn btn-ghost btn-sm">
                             <i class="fas fa-download"></i> Unduh Foto
                         </a>
-                        <a href="<?php echo htmlspecialchars($foto_path); ?>" target="_blank" class="btn btn-ghost btn-sm">
+                        <button class="btn btn-ghost btn-sm" onclick="const w=window.open();w.document.write('<img src=\'<?php echo $foto_data; ?>\' style=\'max-width:100%\'>');">
                             <i class="fas fa-arrow-up-right-from-square"></i> Buka di Tab Baru
-                        </a>
+                        </button>
                     </div>
 
                     <!-- Photo metadata -->
                     <div style="margin-top:12px; padding:12px 14px; background:var(--bg); border-radius:10px; font-size:.8rem; color:var(--text-muted); display:flex; gap:16px; flex-wrap:wrap;">
-                        <span><i class="fas fa-file-image" style="margin-right:4px;"></i><?php echo htmlspecialchars($data['foto']); ?></span>
-                        <span><i class="fas fa-weight-hanging" style="margin-right:4px;"></i><?php echo round(filesize($foto_path) / 1024, 1); ?> KB</span>
+                        <span><i class="fas fa-file-image" style="margin-right:4px;"></i>Base64 Image Data</span>
+                        <span><i class="fas fa-weight-hanging" style="margin-right:4px;"></i><?php echo round(strlen($foto_data) / 1024, 1); ?> KB</span>
                     </div>
 
                 <?php

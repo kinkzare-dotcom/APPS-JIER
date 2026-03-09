@@ -110,7 +110,7 @@ endif; ?>
             "SELECT ub.respon, ub.tanggal_respon, u.nama as nama_admin
                  FROM umpan_balik ub JOIN users u ON ub.id_user=u.id_user
                  WHERE ub.id_aspirasi=$id_asp ORDER BY ub.tanggal_respon DESC LIMIT 1"));
-        $has_foto = $row['foto'] && file_exists('../../uploads/' . $row['foto']);
+        $has_foto = !empty($row['foto']);
 ?>
         <div style="padding:18px 0; border-bottom:1px solid #f1f5f9;" class="laporan-item">
             <div style="display:flex;align-items:flex-start;gap:14px;">
@@ -167,7 +167,7 @@ endif; ?>
         endif; ?>
                         <?php if ($has_foto): ?>
                         <div style="margin-top:12px;">
-                            <img src="../../uploads/<?php echo htmlspecialchars($row['foto']); ?>"
+                            <img src="<?php echo $row['foto']; ?>"
                                  alt="Foto bukti"
                                  style="max-width:260px;border-radius:10px;border:1px solid var(--border);cursor:zoom-in;"
                                  onclick="window.open(this.src,'_blank')">
