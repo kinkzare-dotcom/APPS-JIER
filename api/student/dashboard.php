@@ -109,7 +109,7 @@ $greeting = $hour < 11 ? 'Selamat Pagi' : ($hour < 15 ? 'Selamat Siang' : ($hour
 <main class="main-content">
 
     <!-- Top Bar -->
-    <div class="top-bar" data-aos="fade-down">
+    <div class="top-bar" style="animation: fadeInUp 0.5s ease both;">
         <div class="top-bar-left">
             <h1 style="font-weight: 800; letter-spacing: -0.02em;">Beranda Siswa</h1>
             <p style="color: var(--text-muted);">Pantau dan kelola laporan pengaduan Anda</p>
@@ -130,13 +130,13 @@ $greeting = $hour < 11 ? 'Selamat Pagi' : ($hour < 15 ? 'Selamat Siang' : ($hour
 endif; ?>
 
     <!-- ── Hero Banner ── -->
-    <div class="hero-banner" data-aos="zoom-in" data-aos-delay="100">
-        <div class="hero-greeting" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-sun" style="color: #fde047;"></i> &nbsp;<?php echo $greeting; ?></div>
-        <div class="hero-name" data-aos="fade-up" data-aos-delay="400"><?php echo htmlspecialchars($user_nama); ?>! 👋</div>
-        <div class="hero-sub" data-aos="fade-up" data-aos-delay="500">
+    <div class="hero-banner">
+        <div class="hero-greeting"><i class="fas fa-sun" style="color: #fde047;"></i> &nbsp;<?php echo $greeting; ?></div>
+        <div class="hero-name"><?php echo htmlspecialchars($user_nama); ?>! 👋</div>
+        <div class="hero-sub">
             Punya keluhan sarana sekolah? Laporkan sekarang dan pantau perkembangannya secara real-time melalui dashboard interaktif Anda.
         </div>
-        <div class="hero-actions" data-aos="fade-up" data-aos-delay="600">
+        <div class="hero-actions">
             <a href="lapor.php" class="hero-btn hero-btn-white">
                 <i class="fas fa-paper-plane"></i> Kirim Laporan Baru
             </a>
@@ -148,7 +148,7 @@ endif; ?>
 
     <!-- ── Quick Stats (clickable) ── -->
     <div class="quick-grid">
-        <a href="riwayat.php" class="quick-card glass-card" data-aos="fade-up" data-aos-delay="700">
+        <a href="riwayat.php" class="quick-card" style="animation: fadeInUp 0.6s ease both 0.6s;">
             <div class="quick-icon" style="background:var(--primary-soft);color:var(--primary);">
                 <i class="fas fa-file-invoice"></i>
             </div>
@@ -157,7 +157,7 @@ endif; ?>
                 <div class="quick-val" style="color:var(--primary);"><?php echo $total; ?></div>
             </div>
         </a>
-        <a href="riwayat.php?status=Menunggu" class="quick-card glass-card" data-aos="fade-up" data-aos-delay="800">
+        <a href="riwayat.php?status=Menunggu" class="quick-card" style="animation: fadeInUp 0.6s ease both 0.7s;">
             <div class="quick-icon" style="background:var(--warning-soft);color:var(--warning); <?php echo $tunggu > 0 ? 'animation: glow 2s infinite;' : ''; ?>">
                 <i class="fas fa-hourglass-half"></i>
             </div>
@@ -166,7 +166,7 @@ endif; ?>
                 <div class="quick-val" style="color:var(--warning);"><?php echo $tunggu; ?></div>
             </div>
         </a>
-        <a href="riwayat.php?status=Proses" class="quick-card glass-card" data-aos="fade-up" data-aos-delay="900">
+        <a href="riwayat.php?status=Proses" class="quick-card" style="animation: fadeInUp 0.6s ease both 0.8s;">
             <div class="quick-icon" style="background:var(--info-soft);color:var(--info);">
                 <i class="fas fa-spinner-third fa-spin-slow"></i>
             </div>
@@ -179,7 +179,7 @@ endif; ?>
 
     <!-- ── Notifikasi balasan terbaru ── -->
     <?php if ($last_resp): ?>
-    <div class="notif-card glass-card" data-aos="flip-up" data-aos-delay="1000">
+    <div class="notif-card">
         <div class="notif-icon"><i class="fas fa-envelope-open-text"></i></div>
         <div style="flex:1;">
             <div style="font-size:.78rem; font-weight:800; text-transform:uppercase; letter-spacing:.1em; color:#92400e; margin-bottom:6px;">
@@ -203,7 +203,7 @@ endif; ?>
     <div style="display:grid; grid-template-columns:1.8fr 1fr; gap:24px; align-items:start;">
 
         <!-- Laporan Terbaru -->
-        <div class="card glass-card" data-aos="fade-right" data-aos-delay="1100" style="border-radius: 20px;">
+        <div class="card" style="animation: scaleIn 0.6s ease both 1s; border-radius: 20px;">
             <div class="card-header" style="margin-bottom:20px;">
                 <div>
                     <div class="card-title">Aktivitas Laporan</div>
@@ -264,7 +264,7 @@ endif; ?>
         <!-- Ringkasan Status -->
         <div style="display:flex;flex-direction:column;gap:20px;">
             <!-- Progress bars card -->
-            <div class="card glass-card" data-aos="fade-left" data-aos-delay="1200" style="border-radius: 20px;">
+            <div class="card" style="animation: scaleIn 0.6s ease both 1.1s; border-radius: 20px;">
                 <div class="card-title" style="margin-bottom:20px; font-weight: 800;">📊 Statistik Saya</div>
 
                 <?php
@@ -291,7 +291,7 @@ endforeach; ?>
             </div>
 
             <!-- Tips card -->
-            <div style="background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border:1.5px solid #bae6fd;border-radius:20px;padding:24px;" data-aos="fade-up" data-aos-delay="1300">
+            <div style="background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border:1.5px solid #bae6fd;border-radius:20px;padding:24px; animation: scaleIn 0.6s ease both 1.2s;">
                 <div style="font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#0369a1;margin-bottom:12px; display:flex; align-items:center;">
                     <div style="width:28px; height:28px; background:white; border-radius:8px; display:flex; align-items:center; justify-content:center; margin-right:10px; color:#0ea5e9;">
                         <i class="fas fa-lightbulb"></i>

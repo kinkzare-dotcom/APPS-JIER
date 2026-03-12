@@ -41,7 +41,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
 <main class="main-content">
 
     <!-- ── Top Bar ── -->
-    <div class="top-bar" data-aos="fade-down">
+    <div class="top-bar" style="animation: fadeInUp 0.6s ease both;">
         <div class="top-bar-left">
             <h1 style="font-weight: 800; letter-spacing: -0.02em;">Dashboard Admin</h1>
             <p style="color: var(--text-muted);">Selamat datang kembali, <strong style="color: var(--primary);"><?php echo htmlspecialchars($_SESSION['user_nama']); ?></strong> 👋</p>
@@ -56,7 +56,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
     <!-- ── Stat Cards ── -->
     <div class="stat-grid">
 
-        <div class="stat-card" data-aos="fade-up" data-aos-delay="100" style="--card-accent: var(--primary); border: 1px solid rgba(79,70,229,0.1); background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);">
+        <div class="stat-card" style="--card-accent: var(--primary); animation: fadeInUp 0.6s ease both 0.1s; border: 1px solid rgba(79,70,229,0.1); background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);">
             <div class="stat-card-top">
                 <div>
                     <div class="stat-label">Total Pengaduan</div>
@@ -71,7 +71,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
             </div>
         </div>
 
-        <div class="stat-card" data-aos="fade-up" data-aos-delay="200" style="--card-accent: var(--warning); border: 1px solid rgba(245,158,11,0.1); background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);">
+        <div class="stat-card" style="--card-accent: var(--warning); animation: fadeInUp 0.6s ease both 0.2s; border: 1px solid rgba(245,158,11,0.1); background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);">
             <div class="stat-card-top">
                 <div>
                     <div class="stat-label">Menunggu Respons</div>
@@ -86,7 +86,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
             </div>
         </div>
 
-        <div class="stat-card" data-aos="fade-up" data-aos-delay="300" style="--card-accent: var(--info); border: 1px solid rgba(59,130,246,0.1); background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);">
+        <div class="stat-card" style="--card-accent: var(--info); animation: fadeInUp 0.6s ease both 0.3s; border: 1px solid rgba(59,130,246,0.1); background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);">
             <div class="stat-card-top">
                 <div>
                     <div class="stat-label">Dalam Proses</div>
@@ -101,7 +101,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
             </div>
         </div>
 
-        <div class="stat-card" data-aos="fade-up" data-aos-delay="400" style="--card-accent: var(--success); border: 1px solid rgba(16,185,129,0.1); background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);">
+        <div class="stat-card" style="--card-accent: var(--success); animation: fadeInUp 0.6s ease both 0.4s; border: 1px solid rgba(16,185,129,0.1); background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);">
             <div class="stat-card-top">
                 <div>
                     <div class="stat-label">Selesai Ditangani</div>
@@ -122,7 +122,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
     <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 24px; margin-bottom: 24px;">
         
         <!-- Chart Section -->
-        <div class="card" data-aos="zoom-in" data-aos-delay="500" style="background: rgba(255,255,255,0.8); backdrop-filter: blur(10px);">
+        <div class="card" style="animation: scaleIn 0.6s ease both 0.5s; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px);">
             <div class="card-header">
                 <div>
                     <div class="card-title">Statistik Laporan per Kategori</div>
@@ -265,9 +265,9 @@ while ($row = mysqli_fetch_assoc($latest)):
                             <a href="detail_aspirasi.php?id=<?php echo $row['id_aspirasi']; ?>" class="btn btn-sm btn-primary" style="border-radius: 8px; padding: 8px 16px;">
                                 <i class="fas fa-eye"></i> Detail
                             </a>
-                            <button onclick="confirmDelete(<?php echo $row['id_aspirasi']; ?>)" class="btn btn-sm" style="background:var(--danger-soft);color:var(--danger); border-radius: 8px; padding: 8px 12px;">
+                            <a href="aspirasi.php?delete=<?php echo $row['id_aspirasi']; ?>" class="btn btn-sm" style="background:var(--danger-soft);color:var(--danger); border-radius: 8px; padding: 8px 12px;" onclick="return confirm('Yakin ingin menghapus laporan ini?')">
                                 <i class="fas fa-trash"></i>
-                            </button>
+                            </a>
                         </td>
                     </tr>
                 <?php
@@ -326,23 +326,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
-function confirmDelete(id) {
-    Swal.fire({
-        title: 'Yakin menghapus?',
-        text: "Laporan yang dihapus tidak bisa dikembalikan!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#ef4444',
-        cancelButtonColor: '#64748b',
-        confirmButtonText: 'Ya, Hapus!',
-        cancelButtonText: 'Batal'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = `aspirasi.php?delete=${id}`;
-        }
-    });
-}
 </script>
 
 <style>

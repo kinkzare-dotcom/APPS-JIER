@@ -37,7 +37,6 @@ if (isset($_POST['login'])) {
             $_SESSION['user_nama'] = $user['nama'];
             $_SESSION['user_username'] = $user['username'];
             $_SESSION['user_role'] = $user['role'];
-            $_SESSION['flash'] = ['type' => 'success', 'message' => 'Selamat datang kembali, ' . $user['nama'] . '! 👋'];
 
             if ($user['role'] == 'admin') {
                 header("Location: /admin/dashboard.php");
