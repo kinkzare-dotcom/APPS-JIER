@@ -33,6 +33,11 @@ $latest = mysqli_query($conn, "SELECT a.*, u.nama, k.nama_kategori
                                 LEFT JOIN kategori k ON a.id_kategori = k.id_kategori
                                 ORDER BY a.tanggal DESC LIMIT 8");
 
+// Greeting logic
+$hour = (int)date('H');
+$greeting = $hour < 11 ? 'Selamat Pagi' : ($hour < 15 ? 'Selamat Siang' : ($hour < 18 ? 'Selamat Sore' : 'Selamat Malam'));
+$g_icon = $hour < 11 ? 'fa-sun' : ($hour < 15 ? 'fa-cloud-sun' : ($hour < 18 ? 'fa-cloud-moon' : 'fa-moon'));
+
 require_once dirname(__DIR__) . '/includes/header.php';
 ?>
 
@@ -44,7 +49,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
     <div class="top-bar" style="animation: fadeInUp 0.6s ease both;">
         <div class="top-bar-left">
             <h1 style="font-weight: 800; letter-spacing: -0.02em;">Dashboard Admin</h1>
-            <p style="color: var(--text-muted);">Selamat datang kembali, <strong style="color: var(--primary);"><?php echo htmlspecialchars($_SESSION['user_nama']); ?></strong> 👋</p>
+            <p style="color: var(--text-muted);"><i class="fas <?php echo $g_icon; ?>" style="color: #f59e0b; margin-right: 6px;"></i> <?php echo $greeting; ?>, <strong style="color: var(--primary);"><?php echo htmlspecialchars($_SESSION['user_nama']); ?></strong> 👋</p>
         </div>
         <div class="top-bar-right">
             <a href="aspirasi.php" class="btn btn-primary" style="border-radius: 12px; padding: 12px 24px; font-weight: 700;">
