@@ -10,6 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
     /* ============================================================
@@ -39,19 +42,7 @@
         --transition: all .4s cubic-bezier(.4, 0, .2, 1);
     }
 
-    /* ── Animations ── */
-    @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes scaleIn {
-        from { opacity: 0; transform: scale(0.9); }
-        to { opacity: 1; transform: scale(1); }
-    }
-    @keyframes slideInRight {
-        from { opacity: 0; transform: translateX(50px); }
-        to { opacity: 1; transform: translateX(0); }
-    }
+    /* ── Utilities Animations ── */
     @keyframes float {
         0%, 100% { transform: translateY(0); }
         50% { transform: translateY(-15px); }
@@ -114,7 +105,6 @@
         padding: 5px 14px; border-radius: 50px;
         font-size: .78rem; font-weight: 700; letter-spacing: .06em;
         text-transform: uppercase; margin-bottom: 20px;
-        animation: fadeInUp 0.6s ease both;
     }
 
     /* ============================================================
@@ -124,8 +114,10 @@
         position: fixed; top: 0; left: 0; width: 100%; z-index: 999;
         padding: 20px 0;
         transition: var(--transition);
-        animation: fadeInUp 0.8s ease both;
+        animation: fadeIn 0.8s ease both;
     }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    
     #navbar.scrolled {
         background: rgba(255,255,255,.92);
         backdrop-filter: blur(16px);
@@ -183,7 +175,6 @@
         color: var(--slate-900);
         margin-bottom: 22px;
         letter-spacing: -.03em;
-        animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s both;
     }
     .hero-title .highlight {
         background: linear-gradient(135deg, var(--indigo-600) 0%, var(--pink-500) 100%);
@@ -194,11 +185,9 @@
     .hero-subtitle {
         font-size: 1.15rem; color: var(--slate-500);
         max-width: 560px; margin-bottom: 40px; line-height: 1.75;
-        animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
     }
     .hero-actions { 
         display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 56px;
-        animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s both;
     }
 
     /* stats bar */
@@ -206,7 +195,6 @@
         display: flex; flex-wrap: wrap; gap: 36px; align-items: center;
         padding-top: 36px;
         border-top: 1px solid var(--slate-200);
-        animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s both;
     }
     .stat-item {}
     .stat-num {
@@ -223,7 +211,6 @@
         width: 45%; max-width: 560px;
         pointer-events: none; z-index: 1;
         display: flex; flex-direction: column; gap: 16px; padding-right: 40px;
-        animation: slideInRight 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) both;
     }
     .mock-card {
         background: white;
@@ -236,10 +223,7 @@
     }
     .mock-card:nth-child(2) { animation-delay: .8s; margin-left: 40px; }
     .mock-card:nth-child(3) { animation-delay: 1.6s; }
-    @keyframes float {
-        0%,100% { transform: translateY(0); }
-        50%      { transform: translateY(-10px); }
-    }
+
     .mock-icon {
         width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
         display: flex; align-items: center; justify-content: center; font-size: .95rem;
@@ -432,15 +416,6 @@
     .footer-bottom-links a:hover { color: white; }
 
     /* ============================================================
-       SCROLL ANIMATION
-    ============================================================ */
-    [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
-    [data-reveal].visible { opacity: 1; transform: translateY(0); }
-    [data-reveal][data-delay="1"] { transition-delay: .1s; }
-    [data-reveal][data-delay="2"] { transition-delay: .2s; }
-    [data-reveal][data-delay="3"] { transition-delay: .3s; }
-
-    /* ============================================================
        RESPONSIVE
     ============================================================ */
     @media (max-width: 900px) {
@@ -485,16 +460,16 @@
 
     <div class="container">
         <div class="hero-content">
-            <span class="chip"><i class="fas fa-circle-check"></i> UKK RPL 2026</span>
-            <h1 class="hero-title">
+            <span class="chip" data-aos="fade-down" data-aos-duration="1000"><i class="fas fa-circle-check"></i> UKK RPL 2026</span>
+            <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
                 Sarana Rusak?<br>
                 <span class="highlight">Laporkan Sekarang.</span>
             </h1>
-            <p class="hero-subtitle">
+            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
                 Sistem Pengaduan Sarana Sekolah menghubungkan siswa dengan unit pemeliharaan
                 secara digital — cepat, transparan, dan bisa dipantau real-time.
             </p>
-            <div class="hero-actions">
+            <div class="hero-actions" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
                 <a href="login.php" class="btn btn-primary" style="padding:15px 32px;font-size:1rem;">
                     <i class="fas fa-plus-circle"></i> Buat Laporan
                 </a>
@@ -503,7 +478,7 @@
                 </a>
             </div>
 
-            <div class="stats-bar">
+            <div class="stats-bar" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
                 <div class="stat-item">
                     <div class="stat-num">120+</div>
                     <div class="stat-label">Laporan Terselesaikan</div>
@@ -521,7 +496,7 @@
     </div>
 
     <!-- Floating cards illustration -->
-    <div class="hero-visual">
+    <div class="hero-visual" data-aos="fade-left" data-aos-duration="1500" data-aos-delay="500">
         <div class="mock-card">
             <div class="mock-icon blue"><i class="fas fa-chair"></i></div>
             <div class="mock-text">
@@ -554,39 +529,39 @@
 ============================================================ -->
 <section class="section" id="features">
     <div class="container">
-        <div class="section-heading center" data-reveal>
+        <div class="section-heading center" data-aos="fade-up" data-aos-duration="800">
             <span class="chip"><i class="fas fa-sparkles"></i> Unggulan</span>
             <h2>Semua yang Kamu Butuhkan</h2>
             <p>Dirancang untuk kemudahan pelaporan dan pengelolaan fasilitas sekolah secara efisien.</p>
         </div>
 
         <div class="feature-grid">
-            <div class="feature-card" data-reveal data-delay="1">
+            <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
                 <div class="f-icon purple"><i class="fas fa-bolt"></i></div>
                 <h3>Respons Instan</h3>
                 <p>Laporan langsung masuk ke sistem admin dalam hitungan detik, mempercepat waktu penanganan kerusakan.</p>
             </div>
-            <div class="feature-card" data-reveal data-delay="2">
+            <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
                 <div class="f-icon blue"><i class="fas fa-layer-group"></i></div>
                 <h3>Kategorisasi Cerdas</h3>
                 <p>Laporan dikelompokkan otomatis berdasarkan jenis kerusakan dan area lokasi, memudahkan prioritas perbaikan.</p>
             </div>
-            <div class="feature-card" data-reveal data-delay="3">
+            <div class="feature-card" data-aos="zoom-in" data-aos-delay="300">
                 <div class="f-icon green"><i class="fas fa-chart-line"></i></div>
                 <h3>Tracking Real-time</h3>
                 <p>Pantau status laporan mulai dari pengajuan, verifikasi, proses, hingga selesai dikerjakan secara langsung.</p>
             </div>
-            <div class="feature-card" data-reveal data-delay="1">
+            <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
                 <div class="f-icon pink"><i class="fas fa-shield-halved"></i></div>
                 <h3>Aman & Terpercaya</h3>
                 <p>Data laporan terenkripsi dan hanya dapat diakses oleh pengguna yang berwenang sesuai role masing-masing.</p>
             </div>
-            <div class="feature-card" data-reveal data-delay="2">
+            <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
                 <div class="f-icon orange"><i class="fas fa-message-lines"></i></div>
                 <h3>Tanggapan Admin</h3>
                 <p>Admin dapat memberikan komentar dan update progress langsung pada setiap laporan yang masuk.</p>
             </div>
-            <div class="feature-card" data-reveal data-delay="3">
+            <div class="feature-card" data-aos="zoom-in" data-aos-delay="300">
                 <div class="f-icon teal"><i class="fas fa-chart-bar"></i></div>
                 <h3>Laporan & Statistik</h3>
                 <p>Admin mendapatkan ringkasan data laporan dalam bentuk grafik dan tabel untuk pengambilan keputusan.</p>
@@ -600,24 +575,24 @@
 ============================================================ -->
 <section class="section how-section">
     <div class="container">
-        <div class="section-heading center" data-reveal>
+        <div class="section-heading center" data-aos="fade-up">
             <span class="chip"><i class="fas fa-list-check"></i> Cara Kerja</span>
             <h2>3 Langkah Mudah</h2>
             <p>Melapor tidak pernah semudah ini. Hanya butuh beberapa menit.</p>
         </div>
 
         <div class="steps">
-            <div class="step" data-reveal data-delay="1">
+            <div class="step" data-aos="fade-up" data-aos-delay="100">
                 <div class="step-num">1</div>
                 <h4>Login ke Akun</h4>
                 <p>Masuk menggunakan akun siswa yang telah terdaftar di sistem sekolah.</p>
             </div>
-            <div class="step" data-reveal data-delay="2">
+            <div class="step" data-aos="fade-up" data-aos-delay="200">
                 <div class="step-num">2</div>
                 <h4>Isi Form Laporan</h4>
                 <p>Pilih kategori, tulis deskripsi kerusakan, dan lampirkan foto jika ada.</p>
             </div>
-            <div class="step" data-reveal data-delay="3">
+            <div class="step" data-aos="fade-up" data-aos-delay="300">
                 <div class="step-num">3</div>
                 <h4>Pantau Progress</h4>
                 <p>Cek status laporan secara real-time dan terima tanggapan dari admin.</p>
@@ -629,16 +604,16 @@
 <!-- ============================================================
      FAQ
 ============================================================ -->
-<section class="section">
+<section class="section" id="faq">
     <div class="container">
-        <div class="section-heading center" data-reveal>
+        <div class="section-heading center" data-aos="fade-up">
             <span class="chip"><i class="fas fa-circle-question"></i> FAQ</span>
             <h2>Pertanyaan Umum</h2>
             <p>Jawaban untuk hal-hal yang sering ditanyakan tentang Sistem Pengaduan Sarana Sekolah.</p>
         </div>
 
         <div class="faq-list">
-            <div class="faq-item" data-reveal>
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
                 <button class="faq-btn">
                     Bagaimana cara melaporkan kerusakan sarana?
                     <span class="faq-icon"><i class="fas fa-plus"></i></span>
@@ -647,7 +622,7 @@
                     Login ke akun Siswa, klik tombol <strong>Buat Laporan</strong>, isi kategori dan deskripsi kerusakan, unggah foto bila perlu, lalu kirimkan. Laporan langsung diterima oleh admin.
                 </div>
             </div>
-            <div class="faq-item" data-reveal data-delay="1">
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
                 <button class="faq-btn">
                     Apakah saya bisa melihat tanggapan admin?
                     <span class="faq-icon"><i class="fas fa-plus"></i></span>
@@ -656,7 +631,7 @@
                     Ya. Setiap laporan yang sudah diproses memiliki kolom tanggapan admin. Kamu bisa melihatnya langsung dari halaman <strong>Riwayat Laporan</strong> di dashboard siswa.
                 </div>
             </div>
-            <div class="faq-item" data-reveal data-delay="2">
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
                 <button class="faq-btn">
                     Berapa lama proses perbaikan setelah laporan terkirim?
                     <span class="faq-icon"><i class="fas fa-plus"></i></span>
@@ -665,7 +640,7 @@
                     Verifikasi laporan dijamin maksimal <strong>24 jam</strong> setelah dikirim. Waktu perbaikan aktual tergantung pada tingkat kerusakan dan ketersediaan teknisi.
                 </div>
             </div>
-            <div class="faq-item" data-reveal data-delay="3">
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
                 <button class="faq-btn">
                     Siapa saja yang bisa mengakses sistem ini?
                     <span class="faq-icon"><i class="fas fa-plus"></i></span>
@@ -683,9 +658,9 @@
 ============================================================ -->
 <section class="cta-section">
     <div class="container" style="position:relative;">
-        <h2 data-reveal>Siap Melaporkan Kerusakan?</h2>
-        <p data-reveal data-delay="1">Bergabung dan bantu sekolah kita menjadi tempat belajar yang lebih baik.</p>
-        <a href="login.php" class="btn btn-white" data-reveal data-delay="2">
+        <h2 data-aos="zoom-in">Siap Melaporkan Kerusakan?</h2>
+        <p data-aos="zoom-in" data-aos-delay="100">Bergabung dan bantu sekolah kita menjadi tempat belajar yang lebih baik.</p>
+        <a href="login.php" class="btn btn-white" data-aos="zoom-in" data-aos-delay="200">
             <i class="fas fa-arrow-right-to-bracket"></i> Masuk & Buat Laporan
         </a>
     </div>
@@ -749,19 +724,23 @@
 <!-- ============================================================
      SCRIPTS
 ============================================================ -->
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
 <script>
+/* ── Initialize AOS ── */
+AOS.init({
+    duration: 800,
+    easing: 'ease-in-out-cubic',
+    once: true, // Animasi hanya berjalan sekali saat di-scroll
+    offset: 50,
+});
+
 /* ── Navbar scroll effect ── */
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 50);
 }, { passive: true });
-
-/* ── Scroll reveal ── */
-const revealEls = document.querySelectorAll('[data-reveal]');
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
-}, { threshold: 0.15 });
-revealEls.forEach(el => revealObserver.observe(el));
 
 /* ── FAQ accordion ── */
 document.querySelectorAll('.faq-btn').forEach(btn => {
