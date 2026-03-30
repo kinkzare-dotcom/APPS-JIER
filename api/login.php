@@ -375,6 +375,23 @@ if (isset($_POST['register'])) {
         }
         .card-footer a { color: rgba(255,255,255,.4); text-decoration: none; transition: color .2s; }
         .card-footer a:hover { color: #fff; }
+
+        /* ── Mobile Responsiveness ── */
+        @media (max-width: 600px) {
+            .card { padding: 32px 24px !important; max-width: calc(100% - 32px) !important; margin: 0 auto; }
+            .brand h1 { font-size: 1.35rem !important; }
+            .brand p { font-size: .8rem !important; }
+            .brand-icon { width: 50px; height: 50px; font-size: 1.25rem; margin-bottom: 8px; }
+            
+            .role-card { padding: 14px 16px; gap: 14px; }
+            .role-card-icon { width: 40px; height: 40px; font-size: 1rem; }
+            .role-card-info h3 { font-size: .9rem; }
+            .role-card-info p { font-size: .75rem; }
+            
+            .form-title h2 { font-size: 1.15rem; }
+            body::before { display: none; }
+            body::after { display: none; }
+        }
     </style>
 </head>
 <body>
