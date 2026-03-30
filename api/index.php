@@ -420,16 +420,43 @@
     ============================================================ */
     @media (max-width: 900px) {
         .hero-visual { display: none; }
-        .hero-content { max-width: 100%; }
+        .hero-content { max-width: 100%; text-align: center; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
+        .hero-subtitle { margin-left: auto; margin-right: auto; }
+        .hero-actions { justify-content: center; }
+        .stats-bar { justify-content: center; }
         .footer-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 600px) {
-        .hero-actions { flex-direction: column; }
-        .hero-actions .btn { width: 100%; justify-content: center; }
-        .footer-grid { grid-template-columns: 1fr; }
-        .footer-bottom { flex-direction: column; text-align: center; }
-        .stats-bar { gap: 20px; }
+        .container { padding: 0 20px; }
+        
+        /* Navbar Responsiveness */
+        #navbar { padding: 12px 0; }
+        .nav-inner { gap: 10px; }
+        .logo { font-size: .95rem; }
+        .logo-icon { width: 32px; height: 32px; font-size: .8rem; }
+        .nav-actions .btn-outline { display: none; } /* Hanya tampilkan tombol utama di HP */
+        .nav-actions .btn { padding: 8px 14px; font-size: .8rem; }
+        
+        /* Hero Responsiveness */
+        .hero { padding: 100px 0 50px; }
+        .hero-title { font-size: 2.2rem; line-height: 1.25; margin-bottom: 16px; }
+        .hero-subtitle { font-size: 1rem; margin-bottom: 28px; }
+        .hero-actions { flex-direction: column; width: 100%; gap: 12px; }
+        .hero-actions .btn { width: 100%; justify-content: center; padding: 14px 20px; }
+        
+        /* Layout Adjustments */
+        .section { padding: 60px 0; }
+        .section-heading { margin-bottom: 40px; }
+        .section-heading h2 { font-size: 1.6rem; }
+        .feature-card { padding: 24px 20px; }
+        
+        .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+        .footer-bottom { flex-direction: column; text-align: center; gap: 16px; }
+        .stats-bar { gap: 20px; flex-direction: column; text-align: center; }
         .steps { flex-direction: column; align-items: center; }
+        
+        .blob-1 { width: 300px; height: 300px; right: -50px; }
+        .blob-2 { width: 250px; height: 250px; left: -50px; }
     }
     </style>
 </head>
