@@ -2,14 +2,23 @@
 $current_page = basename($_SERVER['PHP_SELF']);
 $role = $_SESSION['user_role'] ?? '';
 ?>
-<aside class="sidebar">
-    <div class="sidebar-brand">
-        <div class="brand-icon"><i class="fas fa-bullhorn"></i></div>
-        <div class="brand-text">
-            <strong>Sistem Pengaduan</strong>
-            <small>Sarana Sekolah</small>
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand" style="justify-content: space-between; padding-right: 14px;">
+        <div style="display:flex; align-items:center; gap:12px;">
+            <div class="brand-icon"><i class="fas fa-bullhorn"></i></div>
+            <div class="brand-text">
+                <strong>Sistem Pengaduan</strong>
+                <small>Sarana Sekolah</small>
+            </div>
         </div>
+        <!-- Hanya terlihat di setting mobile jika ada custom CSS, namun karena ruangnya sempit kita biarkan saja flex -->
+        <button class="close-sidebar-btn" onclick="toggleSidebar()" style="background:none; border:none; padding:4px; font-size:1.4rem; color:var(--text-muted); cursor:pointer; display:none;" id="btnCloseSidebar"><i class="fas fa-times"></i></button>
     </div>
+    <style>
+        @media (max-width: 900px) {
+            #btnCloseSidebar { display: block !important; }
+        }
+    </style>
 
     <nav style="padding: 12px 0; flex: 1; display: flex; flex-direction: column;">
         <?php if ($role == 'admin'): ?>
@@ -94,4 +103,11 @@ document.getElementById('logoutLink').addEventListener('click', function(e) {
         }
     });
 });
+
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    if (sidebar) sidebar.classList.toggle('active');
+    if (overlay) overlay.classList.toggle('active');
+}
 </script>

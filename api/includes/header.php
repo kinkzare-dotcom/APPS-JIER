@@ -369,12 +369,63 @@ if (!isset($_SESSION['user_id'])) {
     .grid-2        { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
     @media (max-width: 900px) {
-        .sidebar { transform: translateX(-100%); }
-        .main-content { margin-left: 0; padding: 20px; }
+        .sidebar {
+            transform: translateX(-100%); 
+            box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+        }
+        .sidebar.active { transform: translateX(0); }
+        .main-content { margin-left: 0; padding: 100px 16px 20px !important; }
         .grid-2 { grid-template-columns: 1fr; }
+        .top-bar { margin-bottom: 24px; }
+        .top-bar-left h1 { font-size: 1.35rem !important; }
+        .mobile-header { display: flex !important; }
+        .responsive-grid-2,
+        .responsive-grid-3 {
+            display: flex !important; 
+            flex-direction: column !important; 
+            gap: 20px !important; 
+        }
     }
+
+    /* Mobile Header & Overlay CSS */
+    .mobile-header {
+        display: none;
+        position: fixed; top: 0; left: 0; width: 100%; height: 65px;
+        background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+        align-items: center; justify-content: space-between; padding: 0 20px;
+        z-index: 99; box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+    .mobile-brand { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; color: var(--primary); font-size: 1.15rem; display: flex; align-items: center; gap: 8px; }
+    .mobile-menu-btn { background: none; border: none; font-size: 1.4rem; color: var(--text); cursor: pointer; padding: 4px; border-radius: 8px; display: flex; align-items: center; justify-content: center; } 
+    .mobile-menu-btn:hover { background: var(--border); }
+
+    .sidebar-overlay {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(15, 23, 42, 0.6); z-index: 98;
+        opacity: 0; visibility: hidden; transition: var(--transition);
+        backdrop-filter: blur(2px);
+    }
+    .sidebar-overlay.active { opacity: 1; visibility: visible; }
     </style>
 </head>
 <body>
+
+<!-- Mobile Navbar -->
+<div class="mobile-header">
+    <div class="mobile-brand">
+        <div style="width:32px; height:32px; background:linear-gradient(135deg, var(--primary), #818cf8); border-radius:10px; color:white; display:flex; align-items:center; justify-content:center; font-size:14px;">
+            <i class="fas fa-bullhorn"></i>
+        </div>
+        Sistem Sarpras
+    </div>
+    <button class="mobile-menu-btn" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+</div>
+
+<!-- Sidebar Overlay -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
 <div class="dashboard-wrap">
     <?php include 'sidebar.php'; ?>

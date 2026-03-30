@@ -104,6 +104,15 @@ $greeting = $hour < 11 ? 'Selamat Pagi' : ($hour < 15 ? 'Selamat Siang' : ($hour
     content: ''; position: absolute; top:0; left:0; width:4px; height:100%; background: #f59e0b;
 }
 .notif-icon { width:44px;height:44px;border-radius:12px;background:#f59e0b;color:white;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0; }
+
+.content-grid-2 { display: grid; grid-template-columns: 1.8fr 1fr; gap: 24px; align-items: start; }
+
+@media (max-width: 900px) {
+    .hero-banner { padding: 32px 24px; }
+    .hero-name { font-size: 2rem; line-height: 1.3; }
+    .content-grid-2 { grid-template-columns: 1fr; }
+    .quick-grid { grid-template-columns: 1fr; }
+}
 </style>
 
 <main class="main-content">
@@ -200,7 +209,7 @@ endif; ?>
 endif; ?>
 
     <!-- ── 2 Kolom: Tabel Laporan + Ringkasan Status ── -->
-    <div style="display:grid; grid-template-columns:1.8fr 1fr; gap:24px; align-items:start;">
+    <div class="content-grid-2">
 
         <!-- Laporan Terbaru -->
         <div class="card" style="animation: scaleIn 0.6s ease both 1s; border-radius: 20px;">

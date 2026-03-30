@@ -43,6 +43,16 @@ require_once dirname(__DIR__) . '/includes/header.php';
 
 <div class="mesh-gradient"></div>
 
+<style>
+.admin-grid-2 { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 24px; margin-bottom: 24px; }
+.table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+@media (max-width: 900px) {
+    .admin-grid-2 { grid-template-columns: 1fr; }
+    .stat-grid { grid-template-columns: 1fr; }
+}
+</style>
+
 <main class="main-content">
 
     <!-- ── Top Bar ── -->
@@ -124,7 +134,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
     </div>
 
     <!-- ── Two Column: Charts and Progress ── -->
-    <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 24px; margin-bottom: 24px;">
+    <div class="admin-grid-2">
         
         <!-- Chart Section -->
         <div class="card" style="animation: scaleIn 0.6s ease both 0.5s; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px);">
@@ -197,7 +207,7 @@ $pct_selesai = round($selesai / $total * 100);
             </a>
         </div>
 
-        <div style="overflow-x: auto;">
+        <div class="table-responsive">
             <table class="tbl">
                 <thead>
                     <tr>
