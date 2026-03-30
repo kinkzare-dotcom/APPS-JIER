@@ -48,8 +48,8 @@ require_once dirname(__DIR__) . '/includes/header.php';
 .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
 @media (max-width: 900px) {
-    .admin-grid-2 { grid-template-columns: 1fr; }
-    .stat-grid { grid-template-columns: 1fr; }
+    .admin-grid-2 { display: flex !important; flex-direction: column !important; }
+    .stat-grid { display: flex !important; flex-direction: column !important; }
 }
 </style>
 

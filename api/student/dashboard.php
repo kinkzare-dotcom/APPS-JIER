@@ -108,10 +108,12 @@ $greeting = $hour < 11 ? 'Selamat Pagi' : ($hour < 15 ? 'Selamat Siang' : ($hour
 .content-grid-2 { display: grid; grid-template-columns: 1.8fr 1fr; gap: 24px; align-items: start; }
 
 @media (max-width: 900px) {
-    .hero-banner { padding: 32px 24px; }
-    .hero-name { font-size: 2rem; line-height: 1.3; }
-    .content-grid-2 { grid-template-columns: 1fr; }
-    .quick-grid { grid-template-columns: 1fr; }
+    .hero-banner { padding: 32px 20px !important; }
+    .hero-name { font-size: 1.8rem !important; line-height: 1.3 !important; }
+    .content-grid-2 { display: flex !important; flex-direction: column !important; }
+    .quick-grid { display: flex !important; flex-direction: column !important; }
+    .hero-actions { flex-direction: column !important; }
+    .hero-actions .hero-btn { width: 100% !important; justify-content: center !important; text-align: center !important; }
 }
 </style>
 
